@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service App - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar">
+        <a class="logo">ServiceApp</a>
+        <ul class="nav-links">
+            <li><a href="booking.html" class="nav-book">Book</a></li>
+            {% if 'user_id' in session %}
+                <li><a href="#" class="nav-profile">
+                    <img src="https://img.icons8.com/ios-glyphs/30/000000/user--v1.png" alt="Profile Icon">
+                </a></li>
+            {% else %}
+                <li><a href="login.html" class="nav-login">Login</a></li>
+                <li><a href="register.html" class="nav-signup">Sign Up</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Find Trusted Workers Near You</h1>
+            <p class="hero-subtitle">Plumbers, Electricians, Carpenters, and more</p>
+            <a href="{{ url_for('workers') }}" class="hero-cta">Find Workers</a>
+        </div>
+    </section>
+
+    <!-- Features / Info Section -->
+    <section id="features">
+        <div class="feature">
+            <h2 class="feature-title">Reliable & Verified</h2>
+            <p class="feature-desc">All workers are verified and rated by other customers.</p>
+        </div>
+        <div class="feature">
+            <h2 class="feature-title">Quick Booking</h2>
+            <p class="feature-desc">Book a service with just a few clicks and get confirmation instantly.</p>
+        </div>
+        <div class="feature">
+            <h2 class="feature-title">Wide Network</h2>
+            <p class="feature-desc">Find skilled workers in your area anytime you need them.</p>
+        </div>
+    </section>
+
+</body>
+</html>

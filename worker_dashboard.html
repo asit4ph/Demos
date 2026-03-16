@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Worker Dashboard</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Worker Dashboard</h1>
+
+<p>Welcome Worker</p>
+
+<ul>
+<li>View Service Requests</li>
+<li>Update Profile</li>
+<a href="/logout" onclick="return confirmLogout()">Logout</a>
+</ul>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

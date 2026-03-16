@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Service Requests</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Service Requests</h1>
+
+<table border="1">
+
+<tr>
+<th>Problem</th>
+<th>Address</th>
+<th>Date</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+
+{% for request in requests %}
+
+<tr>
+
+<td>{{ request[1] }}</td>
+<td>{{ request[2] }}</td>
+<td>{{ request[3] }}</td>
+<td>{{ request[4] }}</td>
+
+<td>
+<a href="/accept/{{ request[0] }}">Accept</a>
+<a href="/reject/{{ request[0] }}">Reject</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

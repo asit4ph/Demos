@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Workers List</title>
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<h1>Available Workers</h1>
+
+<table border="1">
+
+<tr>
+<th>Name</th>
+<th>Skill</th>
+<th>Experience</th>
+<th>Price</th>
+<th>Location</th>
+<th>Action</th>
+</tr>
+
+{% for worker in workers %}
+
+<tr>
+
+<td>{{ worker[0] }}</td>
+<td>{{ worker[1] }}</td>
+<td>{{ worker[2] }}</td>
+<td>{{ worker[3] }}</td>
+<td>{{ worker[4] }}</td>
+
+<td>
+<a href="/book/{{ worker[0] }}">Book</a>
+</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+<a href="/logout" onclick="return confirmLogout()">Logout</a>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

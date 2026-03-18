@@ -26,32 +26,43 @@ const professionals = [
 
 export default function TopProfessionals() {
   return (
-    <section className="py-24 bg-[#f2f4f4]">
+    <section 
+      className="py-16 md:py-24" 
+      style={{ background: "#0a0a0a" }} // Asli Jet Black 🚀
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-8">
-        {/* Header */}
-        <div className="flex justify-between items-end mb-14">
+        
+        {/* Header Section */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-6">
           <div>
-            <span className="text-xs uppercase tracking-widest text-[#5a6061] font-bold mb-2 block">The Best of the Best</span>
-            <h2 className="text-4xl font-bold text-[#2d3435]">Top-Rated Professionals</h2>
+            <span className="text-[10px] uppercase -mt-10   tracking-[0.2em] text-slate-500 font-black mb-3 block">
+              The Best of the Best
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight">
+              Top-Rated Professionals
+            </h2>
           </div>
-          <button className="text-[#5f5e5e] font-bold hover:underline underline-offset-8 transition-all text-sm hidden sm:block">
+          
+          <button className="group flex items-center gap-2 text-slate-400 hover:text-white font-bold transition-all text-sm hidden sm:flex">
             View All Pros
+            <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </button>
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {professionals.map((pro, i) => (
             <WorkerCard key={i} {...pro} />
           ))}
         </div>
 
-        {/* Mobile: View All */}
-        <div className="mt-8 text-center sm:hidden">
-          <button className="text-[#5f5e5e] font-bold underline underline-offset-4 text-sm">
+        {/* Mobile View All */}
+        <div className="mt-12 text-center sm:hidden">
+          <button className="text-slate-400 hover:text-white font-bold underline underline-offset-8 text-sm">
             View All Pros
           </button>
         </div>
+        
       </div>
     </section>
   );

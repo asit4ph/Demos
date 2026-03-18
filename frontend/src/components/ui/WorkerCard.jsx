@@ -1,6 +1,6 @@
 export default function WorkerCard({ name, role, rate, rating, img }) {
   return (
-    <div className="bg-white p-5 rounded-[2rem] shadow-md hover:-translate-y-2 transition-transform duration-500">
+    <div className="bg-white/50 p-5 rounded-[2rem] shadow-md hover:-translate-y-2 transition-transform duration-500">
       {/* Image */}
       <div className="relative mb-5">
         <img
@@ -29,7 +29,7 @@ export default function WorkerCard({ name, role, rate, rating, img }) {
       <div className="flex gap-2 mt-4 pt-4 border-t border-[#ebeeef]">
         <button
           className="flex-1 text-white py-3 rounded-xl font-medium text-sm hover:opacity-90 transition"
-          style={{ background: "linear-gradient(135deg, #5f5e5e 0%, #535252 100%)" }}
+          style={{ background: "#000000" }}
         >
           Book {name.split(" ")[0]}
         </button>

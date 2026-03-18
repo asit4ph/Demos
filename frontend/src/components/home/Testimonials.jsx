@@ -1,59 +1,108 @@
+import { Quote } from "lucide-react";
+
 export default function Testimonials() {
   return (
-    <section className="py-24 bg-[#f2f4f4]">
-      <div className="max-w-7xl mx-auto px-6 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+    <section 
+      className="py-20 md:py-28 overflow-hidden"
+      style={{ 
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        background: "#0a0a0a" // Jet Black Base
+      }}
+    >
+      <div className="max-w-[1100px] mx-auto px-5 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-          {/* Left: Text + Testimonial Card */}
-          <div>
-            <span className="text-xs uppercase tracking-widest text-[#5a6061] font-bold mb-2 block">Customer Stories</span>
-            <h2 className="text-4xl font-bold text-[#2d3435] mb-10 leading-tight">
-              What our community <br /> is saying
+          {/* Left Side: Content */}
+          <div className="relative z-10">
+            <div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
+              style={{ 
+                background: "rgba(255,255,255,0.03)", 
+                border: "1px solid rgba(255,255,255,0.08)",
+                backdropFilter: "blur(12px)" 
+              }}
+            >
+              <div className="w-1 h-1 rounded-full bg-indigo-500 shadow-[0_0_8px_rgba(99,102,241,0.8)]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-300">
+                Customer Stories
+              </span>
+            </div>
+            
+            <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-12 leading-[1.1] tracking-tighter">
+              Trusted by the <br /> <span className="text-indigo-500">Community.</span>
             </h2>
 
-            <div className="bg-white p-7 rounded-[2.5rem] shadow-sm relative">
-              <span className="material-symbols-outlined text-[#dde4e5] text-6xl absolute top-4 right-7 opacity-60">format_quote</span>
-              <p className="text-[#2d3435] text-base leading-relaxed mb-6 italic">
-                "Concierge transformed the way I handle home maintenance. The electricians they sent were professional, punctual, and highly skilled. Highly recommended!"
+            {/* Testimonial Card */}
+            <div 
+              className="p-8 md:p-12 rounded-[40px] relative group transition-all duration-500"
+              style={{ 
+                background: "rgba(255,255,255,0.02)", 
+                border: "1px solid rgba(255,255,255,0.05)",
+              }}
+            >
+              <Quote 
+                size={60} 
+                className="absolute top-8 right-8 text-indigo-500/20 transition-transform duration-700 group-hover:rotate-12" 
+              />
+              
+              <p className="text-slate-300 text-lg md:text-xl leading-relaxed mb-10 font-medium italic relative z-10">
+                "Concierge transformed the way I handle home maintenance. The team was professional, punctual, and highly skilled. It's the only service I trust now."
               </p>
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-[#e4e9ea]">
+              
+              <div className="flex items-center gap-4 relative z-10">
+                <div className="w-14 h-14 rounded-2xl overflow-hidden border border-white/10 shadow-2xl">
                   <img
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFWc0MUUQH_-xp6IAH1wj0IqZ7HhvpOCO9-UN3LSsZVIGXlBKw8JilGrjaFpiGaK06V9Ws7OujJrWVC40L_3Infk_NxoGEuYnGY75In1PHy4bJdayDvWkZKFON_fln9rl_7_xmIiSbdBO44NN99RNuXJkQ3rPf6OMmX-OpcNOAV54nLxOkvFlscol3QSk6kn6xf4c08Z_GDl3Br0lieMlZY3e9rJ3VEsexHAyCUjuTrXQ5a7Qg7v1qypzrq6WacGCGEqoquYfYmoVt"
+                    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200&auto=format&fit=crop"
                     alt="Eleanor P."
                     className="w-full h-full object-cover"
                   />
                 </div>
                 <div>
-                  <p className="font-bold text-[#2d3435]">Eleanor P.</p>
-                  <p className="text-xs text-[#5a6061] uppercase tracking-widest">Homeowner</p>
+                  <p className="font-bold text-white text-lg">Eleanor P.</p>
+                  <p className="text-[10px] text-indigo-400 font-black uppercase tracking-widest">Verified Homeowner</p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right: Image Grid + Stats */}
-          <div className="relative">
-            <div className="grid grid-cols-2 gap-4">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaAiESbD-XJncW3U4sJPiaAmTQ8B7JSNT1w-gYE-dh7JJHpo326e8YXJGSsHlbsLOrYsaACDx9muEGFsVG1x1v37yN6FZekeBgVBjxkU5_0fqNloHZ0MDdvUhMqRBxftJoc7DUySjWCMMG5vdnoDoc4MdWyglmArc9m3LlnXSmSiz_rur_Racwho41ZHi8KYQwFK7ztoJ8Z715oD314fTumfZopx5hEfgjnpWofLExQpnmx-iQpt5hJlhnOqRJTUO6SoL2rMMolLEq"
-                alt="Clean kitchen"
-                className="rounded-3xl w-full h-60 object-cover mt-8"
-              />
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuADv9oBVXLipyR_F6pYe4Y3QiyPlNI3IJYRTjBsRutC5SEs5v3QcnhVhbP15KKWn46jLaitb96T2FKdnexC3drUwM24od1-zVYKiKEUblJm7Mhx-B4zZe1DFS4WVBnzzuAxwgHJ4ar-w212Of8EWru6GbirTYi2T3KXNMHSw4eypv6KKtJNhHHrpAbOa_7nMOor-z1KThIDB5Lg7Licsw5A23WhKfC-MZ9hPdyUqFM2iLwpfXFbk8yzP2Y0OKcvBwOHhWhIy-tYukCS"
-                alt="Customer handshake"
-                className="rounded-3xl w-full h-60 object-cover"
-              />
+          {/* Right Side: Image Grid + Stats */}
+          <div className="relative group">
+            <div className="grid grid-cols-2 gap-5">
+              <div className="pt-16">
+                <img
+                  src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=500&auto=format&fit=crop"
+                  alt="Service Professional"
+                  className="rounded-[32px] w-full h-72 object-cover border border-white/5 transition-all duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
+              <div>
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=500&auto=format&fit=crop"
+                  alt="Modern Home"
+                  className="rounded-[32px] w-full h-[400px] object-cover border border-white/5 transition-all duration-700 group-hover:scale-[0.98]"
+                />
+              </div>
             </div>
 
-            {/* Stats Card */}
+            {/* Stats Glassmorphism Card */}
             <div
-              className="absolute -bottom-6 -right-4 md:-right-6 text-white p-7 rounded-[2rem] shadow-2xl max-w-[200px]"
-              style={{ background: "linear-gradient(135deg, #5f5e5e 0%, #535252 100%)" }}
+              className="absolute -bottom-10 -left-6 md:-left-12 p-10 rounded-[40px] shadow-2xl backdrop-blur-3xl"
+              style={{ 
+                background: "rgba(255,255,255,0.03)",
+                border: "1px solid rgba(255,255,255,0.1)",
+              }}
             >
-              <p className="text-4xl font-bold mb-1">15k+</p>
-              <p className="text-sm opacity-90 leading-snug">Happy customers served this year across the city.</p>
+              <div className="flex flex-col">
+                <span className="text-6xl font-black text-white tracking-tighter mb-1">15k+</span>
+                <p className="text-[11px] font-black text-indigo-400 uppercase tracking-[0.2em] mb-3">Happy Users</p>
+                <div className="h-[1px] w-12 bg-white/10 mb-3" />
+                <p className="text-xs text-slate-400 leading-relaxed max-w-[140px] font-medium">
+                  Premium services delivered across the city.
+                </p>
+              </div>
+              
+              {/* Blue Glow Background */}
+              <div className="absolute inset-0 -z-10 bg-indigo-500/5 blur-[60px] rounded-full" />
             </div>
           </div>
 

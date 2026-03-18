@@ -1,57 +1,86 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { 
+  ArrowLeft, 
+  ArrowRight, 
+  Sparkles, 
+  Wind,     
+  Wrench,   
+  Zap       
+} from "lucide-react";
 
-const CW = 300;   // card width px
-const GAP = 16;   // gap px
-const STEP = CW + GAP;
-const AUTO_DELAY = 3000;
+const AUTO_DELAY = 1500;
 
 const ITEMS = [
+  // ... (Aapka ITEMS array same rahega)
   {
     tag: "30% OFF", tagIcon: "↓",
-    tagStyle: { background: "rgba(74,222,128,0.15)", color: "#16a34a" },
-    title: "Summer Deep Cleaning", cta: "Book Now", num: "01",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDrMj7aU-STOA5uo_YqFrf73h4fb9elvkVVX4Qf3P42cKSyl9JzHKK7iWucGPcoD0ybbjlp322Ip0Hr_SW58U34PG9Y6VZ5w43dJeO6qMYlCKiD3PczGr0bDIW2_zGoqwSPkCvatYsFJ3KV8GFTeHDSDTeiMqT49wU-hZx_DSD2nT0WfbS2KPQffEX5Gz0vON2ZO5vf0C7izNYRcjyrITPpuI8fkX_wgwOoarCM4uuvm9XOBALpqxXo6yVtsYC0-_30j-bjqr0DSPIh",
+    tagStyle: { background: "rgba(74,222,128,0.15)", color: "#4ade80" },
+    title: "Summer Deep Cleaning", cta: "Book Now",
+    img: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop",
+    serviceIcon: <Sparkles size={18} color="#4ade80" />, 
     gray: true, accent: false,
   },
   {
     tag: "NEW SERVICE", tagIcon: "✦",
-    tagStyle: { background: "rgba(251,191,36,0.15)", color: "#b45309" },
-    title: "AC Maintenance", cta: "Learn More", num: "02",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuBlN8i0yTIpbHuj2iDS75kTVpg72nuId0c7M4UGi0poES4U13d2zTr5vjnQygrHv3Ju-9tBhRC8MyaN6vAMzIMBsyF3jQxlk3-6ZqKQ5ry1VvDx2yOtlU89Z24fvaAgs9qkxBnu9WIazZRErdU1u4ywMnNvpFyGqYuzH-J76LJ6QiR5inrez2VyZP9wR6qZenA0Sfy4FaDwztnGEUwt6Q56IsuWEE0qYHiL5-SWUP-JxkAtH-6KaoqE2J1UZ8gyUaLC9jCJr-IpqzhH",
+    tagStyle: { background: "rgba(251,191,36,0.15)", color: "#fbbf24" },
+    title: "AC Maintenance Pro", cta: "Learn More",
+    img: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
+    serviceIcon: <Wind size={18} color="#fbbf24" />,
     gray: false, accent: true,
   },
   {
     tag: "BEST VALUE", tagIcon: "◆",
-    tagStyle: { background: "rgba(129,140,248,0.15)", color: "#4338ca" },
-    title: "Plumbing Health Check", cta: "Check Avails", num: "03",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDRF49RbQ7l3JBp7c3Ee-wVC0qQlL5Mnjhyd4seT5fdjQcqykv2gM9Sv7yFw_WRliUWDe3pfhFzMNhz1GD99FXSzeNTg0Xk3_bylhLYkwUoIW2iGK5v0Sk4zMBzvbyEZ6wg2oxO0mhEkqC9ofFCsR6lu8EJGKmDaRbcNYnNUQujGQWVDydUr5_VrV11ApD3qPsdXX6zT051qdzQ-2byjIY1oLjX_ddy32k-QXIO6p5wDaYrGVCd4QEIIRaBaAcP2bW-UF5v18QRRVQe",
+    tagStyle: { background: "rgba(129,140,248,0.15)", color: "#818cf8" },
+    title: "Plumbing Health Check", cta: "Check Avails",
+    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=800&auto=format&fit=crop",
+    serviceIcon: <Wrench size={18} color="#818cf8" />,
     gray: true, accent: false,
   },
   {
     tag: "HOT DEAL", tagIcon: "🔥",
-    tagStyle: { background: "rgba(248,113,113,0.15)", color: "#dc2626" },
-    title: "Electrical Inspection", cta: "Book Now", num: "04",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCgfCcl1MrQQk_b2h6B3n-meaQZM2CayMa27GjiLYj5hvv3QZD6AEnjgaEoXQRsN3Dxc7hRp5uqW9vqaOX8JlQAoFAkUm5t_KKV6D-8FoJxR_D7HhUJdXxYlpbUveYaAc090gJWji07NqlEXvdi-QtcaqG8xYWKfFz_e96tTszcwS-1Ksmb0O7rPyOX8Vo8vKqNUAk2wPr5J5P4vCEBMnH00AfEPKGq6D7JmsGGD2Jou1MPoyMKXS0onpoBuPMmilGBSutSFzwG3zhc",
+    tagStyle: { background: "rgba(248,113,113,0.15)", color: "#f87171" },
+    title: "Electrical Inspection", cta: "Book Now",
+    img: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?q=80&w=800&auto=format&fit=crop",
+    serviceIcon: <Zap size={18} color="#f87171" />,
     gray: true, accent: false,
   },
 ];
 
-// triple-cloned array for infinite illusion: [copy1, ORIGINAL, copy2]
 const ORIG = ITEMS.length;
-const ALL  = [...ITEMS, ...ITEMS, ...ITEMS];
+const ALL = [...ITEMS, ...ITEMS, ...ITEMS];
 
-export default function TrendingCarousel() {
-  // pos = index into ALL array (starts in middle copy = index ORIG)
-  const [pos, setPos]           = useState(ORIG);
-  const [cur, setCur]           = useState(0);         // logical 0..ORIG-1
+export default function PremiumCarousel() {
+  const [pos, setPos] = useState(ORIG);
+  const [cur, setCur] = useState(0);
   const [animated, setAnimated] = useState(false);
-  const [paused, setPaused]     = useState(false);
-  const transitioning           = useRef(false);
-  const autoRef                 = useRef(null);
-  const dragStartX              = useRef(null);
+  const [paused, setPaused] = useState(false);
+  
+  const [windowWidth, setWindowWidth] = useState(1200);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // move by delta (+1 / -1)
+  const transitioning = useRef(false);
+  const autoRef = useRef(null);
+  const dragStartX = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = windowWidth < 768;
+  const CW = isMobile ? windowWidth * 0.82 : 340; 
+  const GAP = isMobile ? 16 : 24;
+  const STEP = CW + GAP;
+  
+  const maxContainerWidth = 1100;
+  const sidePadding = isMobile ? 20 : 32;
+  const containerPadding = windowWidth > maxContainerWidth 
+    ? (windowWidth - maxContainerWidth) / 2 + sidePadding 
+    : sidePadding;
+
   const move = useCallback((dir) => {
     if (transitioning.current) return;
     transitioning.current = true;
@@ -64,35 +93,30 @@ export default function TrendingCarousel() {
     });
 
     setTimeout(() => {
-  setAnimated(false);
-
-  setPos(p => {
-    if (p >= ORIG * 2) return p - ORIG;
-    if (p < ORIG) return p + ORIG;
-    return p;
-  });
-
-  requestAnimationFrame(() => {
-    transitioning.current = false;
-  });
-}, 450);
+      setAnimated(false);
+      setPos(p => {
+        if (p >= ORIG * 2) return p - ORIG;
+        if (p < ORIG) return p + ORIG;
+        return p;
+      });
+      requestAnimationFrame(() => {
+        transitioning.current = false;
+      });
+    }, 500);
   }, []);
 
-  // jump to specific logical index
   const goTo = useCallback((idx) => {
     if (transitioning.current) return;
     transitioning.current = true;
     setAnimated(true);
-    const next = ORIG + idx;
-    setPos(next);
+    setPos(ORIG + idx);
     setCur(idx);
     setTimeout(() => {
       setAnimated(false);
       transitioning.current = false;
-    }, 460);
+    }, 500);
   }, []);
 
-  // auto-scroll
   const resetAuto = useCallback(() => {
     clearInterval(autoRef.current);
     autoRef.current = setInterval(() => move(1), AUTO_DELAY);
@@ -110,141 +134,223 @@ export default function TrendingCarousel() {
 
   const handleArrow = (dir) => { move(dir); resetAuto(); };
 
-  // touch / drag swipe
   const onTouchStart = (e) => { dragStartX.current = e.touches[0].clientX; };
-  const onTouchEnd   = (e) => {
+  const onTouchEnd = (e) => {
     if (dragStartX.current === null) return;
     const dx = dragStartX.current - e.changedTouches[0].clientX;
     if (Math.abs(dx) > 40) { move(dx > 0 ? 1 : -1); resetAuto(); }
     dragStartX.current = null;
   };
 
-  const containerPadding = (window.innerWidth - CW) / 2;
-const translateX = -(pos * STEP) + containerPadding; // 32px left padding so first card peeks nicely
+  const translateX = -(pos * STEP) + containerPadding;
+
+  if (!isMounted) return null;
 
   return (
-    <section
-      style={{ background: "#ffffff", padding: "80px 0", overflow: "hidden", position: "relative" }}
+    <section 
+      className="relative overflow-hidden pt-6 pb-16 md:pt-10 md:pb-10"
+      style={{ 
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif", // Apple-style system font
+        background: "#0a0a0a" 
+      }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap');
-        @keyframes tcUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
-        .tc-section::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,0,0,0.06),transparent)}
-        .tc-card:hover{transform:translateY(-6px)!important;box-shadow:0 20px 48px rgba(15,23,42,0.1)!important}
-        .tc-card:hover .tc-img{transform:scale(1.06)!important}
-        .tc-card.tc-gray:hover .tc-img{filter:grayscale(0) brightness(0.95)!important}
-        .tc-arr:hover{background:#f8fafc!important;border-color:#cbd5e1!important;color:#0f172a!important}
-        .tc-cta-light:hover{background:#e2e8f0!important;color:#0f172a!important}
-        .tc-cta-dark:hover{background:rgba(255,255,255,0.2)!important;color:#fff!important}
-        .tc-dot:hover{background:#94a3b8!important}
+        @keyframes fadeInSlideUp {
+          from { opacity: 0; transform: translateY(24px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-enter { animation: fadeInSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        
+        /* Gen-Z Glint Effect for Title */
+        .text-glint {
+          background: linear-gradient(to right, #ffffff 20%, #888888 40%, #888888 60%, #ffffff 80%);
+          background-size: 200% auto;
+          color: transparent;
+          -webkit-background-clip: text;
+          animation: shine 4s linear infinite;
+        }
+        @keyframes shine {
+          to { background-position: 200% center; }
+        }
       `}</style>
 
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }} className="tc-section" />
+      {/* Top Divider Subtlety */}
+      <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-      {/* Header — constrained width */}
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2rem" }}>
-        <div
-          className="flex justify-between items-center mb-10"
-          style={{ animation: "tcUp 0.5s ease 0.1s both", opacity: 0 }}
-        >
-          <div>
-            <div className="flex items-center gap-2 mb-2.5">
-              <div style={{ width: "24px", height: "1px", background: "rgba(0,0,0,0.2)" }} />
-              <p style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.14em", textTransform: "uppercase", color: "rgba(0,0,0,0.3)" }}>
-                Special Offers
-              </p>
-            </div>
-            <h2 style={{ fontSize: "34px", fontWeight: 800, color: "#0f172a", letterSpacing: "-0.04em", lineHeight: 1 }}>
-              Trending This Week
-            </h2>
-          </div>
-          <div className="flex gap-2">
-            {[{ icon: <ArrowLeft size={17} />, dir: -1 }, { icon: <ArrowRight size={17} />, dir: 1 }].map((btn, i) => (
-              <button key={i} onClick={() => handleArrow(btn.dir)}
-                className="tc-arr flex items-center justify-center rounded-full transition-all"
-                style={{ width: "42px", height: "42px", border: "1.5px solid #e2e8f0", background: "#fff", color: "#64748b", cursor: "pointer" }}>
-                {btn.icon}
-              </button>
-            ))}
+      {/* Header with iPhone/Gen-Z Styling */}
+      <div className="relative mx-auto max-w-[1100px] px-5 md:px-8 mb-10 md:mb-12 opacity-0 animate-enter">
+        <div className="flex flex-col md:flex-row items-center justify-between">
+          
+          {/* Invisible spacer to perfectly center the title on desktop */}
+          <div className="hidden md:block w-[100px]"></div>
+
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-center text-glint py-2">
+            Trending This Week
+          </h2>
+          
+          {/* Gen-Z / iPhone Style Minimal Arrows */}
+          <div className="flex gap-4 mt-6 md:mt-0 w-full md:w-auto justify-center md:justify-end md:min-w-[100px]">
+            <button 
+              onClick={() => handleArrow(-1)}
+              className="group flex items-center justify-center text-slate-400 transition-all duration-300 hover:text-white active:scale-90"
+              aria-label="Previous"
+            >
+              <div className="flex items-center gap-2 px-3 py-2 rounded-2xl hover:bg-white/5 transition-colors">
+                 <ArrowLeft size={28} strokeWidth={2} className="transition-transform duration-300 group-hover:-translate-x-1" />
+                 <span className="text-sm font-semibold tracking-wide hidden sm:block">Left</span>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => handleArrow(1)}
+              className="group flex items-center justify-center text-slate-400 transition-all duration-300 hover:text-white active:scale-90"
+              aria-label="Next"
+            >
+              <div className="flex items-center gap-2 px-3 py-2 rounded-2xl hover:bg-white/5 transition-colors">
+                 <span className="text-sm font-semibold tracking-wide hidden sm:block">Right</span>
+                 <ArrowRight size={28} strokeWidth={2} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </div>
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Full-width track — no inner padding */}
+      {/* Track Container (Same as before) */}
       <div
-        style={{ overflow: "hidden", width: "100%", cursor: "grab", userSelect: "none", animation: "tcUp 0.55s ease 0.2s both", opacity: 0 }}
+        className="w-full cursor-grab active:cursor-grabbing select-none opacity-0 animate-enter"
+        style={{ animationDelay: "150ms" }}
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
         <div
+          className="flex pb-12 pt-4"
           style={{
-            display: "flex",
             gap: `${GAP}px`,
             transform: `translateX(${translateX}px)`,
-            transition: animated ? "transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94)" : "none",
+            transition: animated ? "transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)" : "none",
             willChange: "transform",
-            paddingBottom: "8px",   // so hover shadow isn't clipped
           }}
         >
           {ALL.map((item, i) => (
             <div
               key={i}
-              className={`tc-card${item.gray ? " tc-gray" : ""}`}
+              className="group relative flex-shrink-0 overflow-hidden cursor-pointer"
               style={{
-                flexShrink: 0,
                 width: `${CW}px`,
-                borderRadius: "20px",
-                overflow: "hidden",
-                position: "relative",
-                cursor: "pointer",
-                transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                background: item.accent ? "#0f172a" : "#f8fafc",
-                border: `1.5px solid ${item.accent ? "#0f172a" : "#f1f5f9"}`,
+                borderRadius: "28px", // Slightly rounder for iOS feel
+                boxShadow: "0 10px 40px -10px rgba(0, 0, 0, 0.8)",
+                transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
+                border: "1px solid rgba(255,255,255,0.05)", // Ultra thin glass border
+                background: "#121212", 
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-8px) scale(1.02)"; 
+                e.currentTarget.style.boxShadow = "0 30px 60px -15px rgba(0, 0, 0, 1)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+                e.currentTarget.style.boxShadow = "0 10px 40px -10px rgba(0, 0, 0, 0.8)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.05)";
               }}
             >
-              {/* Image */}
-              <div style={{ height: "176px", overflow: "hidden" }}>
-                <img src={item.img} alt={item.title} className="tc-img"
-                  style={{
-                    width: "100%", height: "176px", objectFit: "cover", display: "block",
-                    transition: "transform 0.6s ease, filter 0.5s ease",
-                    filter: item.gray ? "grayscale(1) brightness(0.85)" : "brightness(0.9)",
+              {/* Image Container */}
+              <div style={{ height: "220px", position: "relative", overflow: "hidden" }}>
+                
+                <div 
+                  className="absolute top-4 right-4 z-20 flex h-10 w-10 items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-500 group-hover:scale-110 group-hover:bg-white/10"
+                  style={{ 
+                    border: "1px solid rgba(255,255,255,0.1)", 
+                    backgroundColor: "rgba(0,0,0,0.4)", 
+                    backdropFilter: "blur(12px)", // Stronger blur for iOS frosted glass
+                    WebkitBackdropFilter: "blur(12px)"
                   }}
+                >
+                  {item.serviceIcon}
+                </div>
+
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transition: "transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.5s ease",
+                    filter: item.gray ? "grayscale(100%) brightness(0.7)" : "brightness(0.85)",
+                  }}
+                  className="group-hover:scale-105 group-hover:grayscale-0 group-hover:brightness-105" 
                 />
+                
+                <div style={{
+                  position: "absolute", inset: 0,
+                  background: "linear-gradient(to top, #121212 0%, transparent 60%)",
+                  pointerEvents: "none"
+                }}/>
               </div>
 
-              {/* Gradient blend */}
-              <div style={{
-                position: "absolute", top: "120px", left: 0, right: 0, height: "80px",
-                background: `linear-gradient(to bottom, transparent, ${item.accent ? "#0f172a" : "#f8fafc"})`,
-                pointerEvents: "none",
-              }} />
-
-              {/* Body */}
-              <div style={{ padding: "18px 20px 20px", position: "relative" }}>
-                <span className="inline-flex items-center gap-1.5 rounded-full text-[10.5px] font-bold"
-                  style={{ ...item.tagStyle, padding: "4px 10px", letterSpacing: "0.05em", marginBottom: "10px", display: "inline-flex" }}>
+              {/* Content Body */}
+              <div style={{ 
+                  padding: "24px", 
+                  position: "relative", 
+                  zIndex: 10,
+                  background: "#121212" 
+                }}>
+                
+                <span
+                  style={{
+                    ...item.tagStyle,
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "6px",
+                    padding: "6px 14px",
+                    borderRadius: "100px",
+                    fontSize: "11px",
+                    fontWeight: 800,
+                    letterSpacing: "0.08em",
+                    marginBottom: "18px",
+                    textTransform: "uppercase"
+                  }}
+                >
                   {item.tagIcon} {item.tag}
                 </span>
-                <h3 style={{ fontSize: "17px", fontWeight: 800, color: item.accent ? "#fff" : "#0f172a", letterSpacing: "-0.03em", lineHeight: 1.2, marginBottom: "14px" }}>
+
+                <h3
+                  style={{
+                    fontSize: "1.35rem",
+                    fontWeight: 700,
+                    letterSpacing: "-0.03em",
+                    lineHeight: 1.2,
+                    marginBottom: "24px",
+                    color: "#f8fafc", 
+                  }}
+                >
                   {item.title}
                 </h3>
-                <div className="flex items-center justify-between">
+
+                {/* CTA and Number */}
+                <div className="flex items-center justify-between mt-auto">
                   <button
-                    className={`inline-flex items-center gap-1.5 rounded-full transition-all ${item.accent ? "tc-cta-dark" : "tc-cta-light"}`}
+                    className="group/btn flex items-center gap-2 rounded-full px-5 py-2.5 text-[13px] font-bold tracking-wide transition-all duration-300 bg-white/5 text-slate-300 hover:bg-white hover:text-black border border-white/10 hover:border-white"
+                    style={{ fontFamily: "inherit" }}
+                  >
+                    {item.cta} 
+                    <ArrowRight size={16} strokeWidth={2.5} className="transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </button>
+                  
+                  <span
                     style={{
-                      fontSize: "12px", fontWeight: 600, border: "none", padding: "7px 14px", cursor: "pointer",
-                      fontFamily: "'DM Sans', sans-serif",
-                      background: item.accent ? "rgba(255,255,255,0.12)" : "#f1f5f9",
-                      color: item.accent ? "rgba(255,255,255,0.7)" : "#475569",
+                      fontSize: "20px",
+                      fontFamily: "system-ui, sans-serif",
+                      fontWeight: 800,
+                      color: "rgba(255,255,255,0.08)",
+                      letterSpacing: "-0.04em"
                     }}
                   >
-                    {item.cta} <ArrowRight size={11} />
-                  </button>
-                  <span style={{ fontSize: "11px", fontWeight: 600, letterSpacing: "0.04em", color: item.accent ? "rgba(255,255,255,0.2)" : "rgba(0,0,0,0.12)" }}>
-                    {item.num}
+                    
                   </span>
                 </div>
               </div>
@@ -253,19 +359,19 @@ const translateX = -(pos * STEP) + containerPadding; // 32px left padding so fir
         </div>
       </div>
 
-      {/* Dots */}
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 2rem" }}>
-        <div className="flex justify-center gap-1.5 mt-7">
+      {/* Navigation Dots - Sleek iOS Style */}
+      <div className="mx-auto max-w-[1100px] px-5 md:px-8 mt-2">
+        <div className="flex justify-center gap-2.5">
           {ITEMS.map((_, i) => (
-            <button key={i} onClick={() => goTo(i)} className="tc-dot transition-all"
+            <button 
+              key={i} 
+              onClick={() => goTo(i)}
+              className="h-1.5 rounded-full transition-all duration-500 ease-out focus:outline-none"
               style={{
-                height: "5px",
-                width: cur === i ? "20px" : "5px",
-                borderRadius: "3px",
-                background: cur === i ? "#0f172a" : "#e2e8f0",
-                border: "none", cursor: "pointer",
-                transition: "all 0.3s ease",
+                width: cur === i ? "32px" : "6px",
+                background: cur === i ? "#ffffff" : "rgba(255,255,255,0.15)", 
               }}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>
